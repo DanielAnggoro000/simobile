@@ -51,6 +51,15 @@ const routes: Routes = [
     path: 'detailproduk/:index',
     loadChildren: () => import('./detailproduk/detailproduk.module').then( m => m.DetailprodukPageModule)
   },
+  {
+    path: 'tambah-produk',
+    loadChildren: () => import('./tambah-produk/tambah-produk.module').then( m => m.TambahProdukPageModule)
+  },
+  {
+    path: 'editproduk/:index',
+    loadChildren: () => import('./editproduk/editproduk.module').then( m => m.EditprodukPageModule)
+  },
+
 
 ];
 

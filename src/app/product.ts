@@ -82,6 +82,15 @@ export class Product {
 
         }
     ];
+    addProduk(p_name: string, p_buyPrice: number, p_sellPrice: number, p_stock: number, p_imgurl: string) {
+        this.products.push({
+            name: p_name,
+            buyPrice: p_buyPrice,
+            sellPrice: p_sellPrice, 
+            stock: p_stock, 
+            imgurl: p_imgurl
+        })
+    }
     updateStock(jumlah: number, index: number) {
         this.products[index].stock += jumlah;
     }
