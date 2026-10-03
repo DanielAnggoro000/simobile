@@ -43,6 +43,15 @@ const routes: Routes = [
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
   },
+  {
+    path: 'keranjang',
+    loadChildren: () => import('./keranjang/keranjang.module').then( m => m.KeranjangPageModule)
+  },
+  {
+    path: 'detailproduk/:index',
+    loadChildren: () => import('./detailproduk/detailproduk.module').then( m => m.DetailprodukPageModule)
+  },
+
 ];
 
 @NgModule({

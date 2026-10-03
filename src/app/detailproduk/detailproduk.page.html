@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{products[index].name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{products[index].name}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item>
+      <ion-img [src]="products[index].imgurl" />
+    </ion-item>
+    <ion-item>
+      Harga Jual: {{products[index].sellPrice}}
+    </ion-item>
+    <ion-item>
+      Harga Beli: {{products[index].buyPrice}}
+    </ion-item>
+    <ion-item>
+      Stock: {{products[index].stock}}
+    </ion-item>
+  </ion-list>
+</ion-content>
