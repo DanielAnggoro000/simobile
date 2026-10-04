@@ -8,8 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() { }
+
   toggleDarkMode(event: CustomEvent) {
     const isDark = event.detail.checked;
     document.documentElement.classList.toggle('ion-palette-dark', isDark);
   }
+  
 }
+

@@ -16,7 +16,7 @@
       <ion-col *ngFor="let product of products2; let i2 = index">
         <ion-list>
           <ion-item>
-            <ion-img [src]="product.imgurl" />
+            <ion-img [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
           </ion-item>
           <ion-item routerLink="/detailproduk/{{(i * 2) + i2}}" color="success">
             {{product.name}}
