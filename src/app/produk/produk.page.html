@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>produk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">produk</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row *ngFor="let products2 of chunkArray(products, 2); let i = index">
+      <ion-col *ngFor="let product of products2; let i2 = index">
+        <ion-list>
+          <ion-item>
+            <ion-img [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
+          </ion-item>
+          <ion-item routerLink="/detailproduk/{{(i * 2) + i2}}" color="success">
+            {{product.name}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
