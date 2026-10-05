@@ -2,6 +2,9 @@
   <ion-toolbar>
     <ion-title>produk</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Cari produk..." [debounce]="0" [(ngModel)]="keyword" (ngModelChange)="cari()"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -11,18 +14,22 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-item *ngIf="hasil.length === 0">
+    <ion-label>Tidak ada produk yang cocok dengan "{{ keyword }}"</ion-label>
+  </ion-item>
+
   <ion-grid>
-    <ion-row *ngFor="let products2 of chunkArray(products, 2); let i = index">
-      <ion-col *ngFor="let product of products2; let i2 = index">
+    <ion-row *ngFor="let products2 of baris">
+      <ion-col *ngFor="let product of products2">
         <ion-list>
           <ion-item>
             <ion-img [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
           </ion-item>
-          <ion-item routerLink="/detailproduk/{{(i * 2) + i2}}" color="success">
+          <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="success">
             {{product.name}}
           </ion-item>
           <ion-item>
-            <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang((i * 2) + i2)">
+            <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
               Tambah ke Keranjang
             </ion-button>
           </ion-item>

@@ -3,7 +3,7 @@ import { Product } from './product';
 
 @Injectable({
     providedIn: 'root'
-}
+})
 export class Keranjang {
 
 

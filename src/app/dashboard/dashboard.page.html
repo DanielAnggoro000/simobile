@@ -4,10 +4,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">dashboard</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card color="primary" class="kartu-dashboard">
+    <ion-card-header>
+      <ion-card-subtitle>Jumlah Produk</ion-card-subtitle>
+      <ion-card-title>{{ jumlahProduk }} produk</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card color="success" class="kartu-dashboard">
+    <ion-card-header>
+      <ion-card-subtitle>Total Transaksi Hari Ini</ion-card-subtitle>
+      <ion-card-title>Rp {{ totalTransaksiHariIni | number:'1.0-0' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ jumlahTransaksiHariIni }} transaksi
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="warning"class="kartu-dashboard">
+    <ion-card-header>
+      <ion-card-subtitle>Produk Terlaris</ion-card-subtitle>
+      <ion-card-title>{{ produkTerlaris }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Terjual {{ qtyTerlaris }} pcs
+    </ion-card-content>
+  </ion-card>
 </ion-content>

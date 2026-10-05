@@ -101,4 +101,7 @@ export class Product {
     updateStock(jumlah: number, index: number) {
         this.products[index].stock += jumlah;
     }
+    getJumlahProduk() {
+        return this.products.length;
+    }
 }
