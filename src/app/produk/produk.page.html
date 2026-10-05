@@ -21,6 +21,11 @@
           <ion-item routerLink="/detailproduk/{{(i * 2) + i2}}" color="success">
             {{product.name}}
           </ion-item>
+          <ion-item>
+            <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang((i * 2) + i2)">
+              Tambah ke Keranjang
+            </ion-button>
+          </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>

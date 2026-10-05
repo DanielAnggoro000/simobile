@@ -10,9 +10,13 @@
       <ion-title size="large">{{products[index].name}}</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <ion-list>
     <ion-item>
-      <ion-img [src]="products[index].imgurl" />
+      <ion-img [src]="products[index].imgurl "></ion-img>
+    </ion-item>
+    <ion-item>
+      Kategori: {{products[index].category}}
     </ion-item>
     <ion-item>
       Harga Jual: {{products[index].sellPrice}}
@@ -21,14 +25,19 @@
       Harga Beli: {{products[index].buyPrice}}
     </ion-item>
     <ion-item>
+      Untung per item: {{products[index].sellPrice - products[index].buyPrice}}
+    </ion-item>
+    <ion-item>
       Stock: {{products[index].stock}}
     </ion-item>
 
     <ion-item>
+      <ion-button [disabled]="products[index].stock == 0" (click)="tambahKeranjang()">
+        Tambah ke Keranjang
+      </ion-button>
       <ion-button routerLink="/editproduk/{{ index }}">
         Edit Produk
       </ion-button>
     </ion-item>
-
   </ion-list>
 </ion-content>

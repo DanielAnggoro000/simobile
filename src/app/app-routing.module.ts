@@ -59,6 +59,13 @@ const routes: Routes = [
     path: 'editproduk/:index',
     loadChildren: () => import('./editproduk/editproduk.module').then( m => m.EditprodukPageModule)
   },
+  {
+    path: 'detailtransaksi/:index',
+    loadChildren: () => import('./detailtransaksi/detailtransaksi.module').then( m => m.DetailtransaksiPageModule)
+  },  {
+    path: 'detailtransaksi',
+    loadChildren: () => import('./detailtransaksi/detailtransaksi.module').then( m => m.DetailtransaksiPageModule)
+  },
 
 
 ];

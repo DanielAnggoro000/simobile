@@ -7,6 +7,7 @@ export class Product {
     products = [
         {
             name: "Beras Premium Ramos 5kg",
+            category: "Sembako",
             buyPrice: 65000,
             sellPrice: 70000,
             stock: 25,
@@ -14,6 +15,7 @@ export class Product {
         },
         {
             name: "Minyak Goreng Bimoli 2L",
+            category: "Sembako",
             buyPrice: 34000,
             sellPrice: 38000,
             stock: 30,
@@ -21,6 +23,7 @@ export class Product {
         },
         {
             name: "Gula Pasir Putih 1kg",
+            category: "Sembako",
             buyPrice: 15500,
             sellPrice: 17500,
             stock: 40,
@@ -28,6 +31,7 @@ export class Product {
         },
         {
             name: "Indomie Goreng Original",
+            category: "Makanan Instan",
             buyPrice: 2800,
             sellPrice: 3500,
             stock: 120,
@@ -35,6 +39,7 @@ export class Product {
         },
         {
             name: "Sunlight Sabun Pencuci Piring 755ml",
+            category: "Kebersihan",
             buyPrice: 15000,
             sellPrice: 18000,
             stock: 25,
@@ -42,6 +47,7 @@ export class Product {
         },
         {
             name: "Gas Elpiji 3kg",
+            category: "Rumah Tangga",
             buyPrice: 18000,
             sellPrice: 21000,
             stock: 10,
@@ -49,6 +55,7 @@ export class Product {
         },
         {
             name: "Kecap Manis Bango 550ml",
+            category: "Bumbu",
             buyPrice: 22000,
             sellPrice: 25500,
             stock: 18,
@@ -56,6 +63,7 @@ export class Product {
         },
         {
             name: "Tolak Angin Cair (1 Kotak isi 12)",
+            category: "Kesehatan",
             buyPrice: 38000,
             sellPrice: 44000,
             stock: 12,
@@ -63,6 +71,7 @@ export class Product {
         },
         {
             name: "Molto Pewangi Pakaian 780ml",
+            category: "Kebersihan",
             buyPrice: 14000,
             sellPrice: 17000,
             stock: 22,
@@ -70,6 +79,7 @@ export class Product {
         },
         {
             name: "Roma Kelapa Biskuit 300g",
+            category: "Snack",
             buyPrice: 8500,
             sellPrice: 10500,
             stock: 30,
@@ -78,9 +88,10 @@ export class Product {
     ];
 
 
-    addProduk(p_name: string, p_buyPrice: number, p_sellPrice: number, p_stock: number, p_imgurl: string) {
+    addProduk(p_name: string, p_category: string, p_buyPrice: number, p_sellPrice: number, p_stock: number, p_imgurl: string) {
         this.products.push({
             name: p_name,
+            category: p_category,
             buyPrice: p_buyPrice,
             sellPrice: p_sellPrice,
             stock: p_stock,

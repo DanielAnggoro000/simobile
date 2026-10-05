@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TransactionService } from '../transaksi';
 
 @Component({
   selector: 'app-transaksi',
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class TransaksiPage implements OnInit {
+  history: any[] = [];
 
-  constructor() { }
+  constructor(private transaksiservice: TransactionService) { }
 
   ngOnInit() {
+    this.history = this.transaksiservice.history;
   }
 
+  formatTanggal(d: Date): string {
+    const arrayOfMonths = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+    return d.getDate() + ' ' + arrayOfMonths[d.getMonth()] + ' ' + d.getFullYear();
+  }
 }

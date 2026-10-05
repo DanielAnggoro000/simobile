@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
+import { Keranjang } from '../keranjang';
 
 @Component({
   selector: 'app-produk',
@@ -9,7 +10,7 @@ import { Product } from '../product';
 })
 export class ProdukPage implements OnInit {
   products: any[] = [];
-  constructor(private productservice: Product) {
+  constructor(private productservice: Product, private keranjangservice: Keranjang) {
 
   }
 
@@ -23,5 +24,9 @@ export class ProdukPage implements OnInit {
       result.push(arr.slice(i, i + chunkSize));
     }
     return result;
+  }
+
+  tambahKeranjang(index: number) {
+    this.keranjangservice.tambahKeKeranjang(index, 1);
   }
 }

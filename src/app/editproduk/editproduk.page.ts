@@ -16,32 +16,35 @@ export class EditprodukPage implements OnInit {
   products: any[] = [];
 
   edit_name: string = "";
+  edit_category: string = "";
   edit_buyPrice: number = 0;
   edit_sellPrice: number = 0;
   edit_stock: number = 0;
   edit_imgurl: string = "";
 
   err_name: string = '';
+  err_category: string = '';
   err_buyPrice: string = '';
   err_sellPrice: string = '';
   err_stock: string = '';
   valid: string = 'valid';
-  
+
   ngOnInit() {
     this.products = this.productservice.products;
     this.route.params.subscribe(params => {
-    this.index = params['index'];
-    this.edit_name = this.products[this.index].name;
-    this.edit_buyPrice = this.products[this.index].buyPrice;
-    this.edit_sellPrice = this.products[this.index].sellPrice;
-    this.edit_stock = this.products[this.index].stock;
-    this.edit_imgurl = this.products[this.index].imgurl;
-      
+      this.index = params['index'];
+      this.edit_name = this.products[this.index].name;
+      this.edit_category = this.products[this.index].category;
+      this.edit_buyPrice = this.products[this.index].buyPrice;
+      this.edit_sellPrice = this.products[this.index].sellPrice;
+      this.edit_stock = this.products[this.index].stock;
+      this.edit_imgurl = this.products[this.index].imgurl;
     });
   }
 
   cekValid() {
     this.err_name = '';
+    this.err_category = '';
     this.err_buyPrice = '';
     this.err_sellPrice = '';
     this.err_stock = '';
@@ -49,6 +52,10 @@ export class EditprodukPage implements OnInit {
 
     if (this.edit_name === "") {
       this.err_name = 'Nama produk harus diisi';
+      this.valid = 'invalid';
+    }
+    if (this.edit_category === "") {
+      this.err_category = 'Kategori harus diisi';
       this.valid = 'invalid';
     }
     if (this.edit_buyPrice <= 0) {
@@ -69,6 +76,7 @@ export class EditprodukPage implements OnInit {
     this.cekValid();
     if (this.valid === "valid") {
       this.products[this.index].name = this.edit_name;
+      this.products[this.index].category = this.edit_category;
       this.products[this.index].buyPrice = this.edit_buyPrice;
       this.products[this.index].sellPrice = this.edit_sellPrice;
       this.products[this.index].stock = this.edit_stock;

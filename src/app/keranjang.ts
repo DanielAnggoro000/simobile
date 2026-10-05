@@ -3,7 +3,7 @@ import { Product } from './product';
 
 @Injectable({
     providedIn: 'root'
-})
+}
 export class Keranjang {
 
 
@@ -13,7 +13,7 @@ export class Keranjang {
     tambahKeKeranjang(indexProduk: number, jumlah: number = 1) {
         let ketemu = false;
         for (let i = 0; i < this.isikeranjang.length; i++) {
-            if (this.isikeranjang[i].indexProduk === indexProduk) {
+            if (this.isikeranjang[i].indexProduk == indexProduk) {
                 this.isikeranjang[i].jumlah += jumlah;
                 ketemu = true;
                 break;

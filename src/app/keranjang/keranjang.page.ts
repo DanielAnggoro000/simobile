@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Keranjang } from '../keranjang';
+import { Product } from '../product';
+import { TransactionService } from '../transaksi';
 
 @Component({
   selector: 'app-keranjang',
@@ -7,10 +11,28 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class KeranjangPage implements OnInit {
+  products: any[] = [];
 
-  constructor() { }
+  constructor(private keranjangservice: Keranjang, private productservice: Product, private transaksiservice: TransactionService, private router: Router) { }
 
   ngOnInit() {
+    this.products = this.productservice.products;
   }
 
+  getIsi() {
+    return this.keranjangservice.isikeranjang;
+  }
+
+  getTotal() {
+    return this.keranjangservice.getTotalPrice();
+  }
+
+  kosongkan() {
+    this.keranjangservice.clearCart();
+  }
+
+  konfirmasi() {
+    this.transaksiservice.konfirmasiTransaksi();
+    this.router.navigate(['/transaksi']);
+  }
 }

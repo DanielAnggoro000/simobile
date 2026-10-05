@@ -22,6 +22,14 @@
     </ion-item>
 
     <ion-item>
+      <ion-input label="Kategori" labelPlacement="stacked" placeholder="Contoh: Sembako"
+        [(ngModel)]="edit_category" (keyup)="cekValid()" required></ion-input>
+    </ion-item>
+    <ion-item *ngIf="err_category">
+      <ion-label color="danger">{{ err_category }}</ion-label>
+    </ion-item>
+
+    <ion-item>
       <ion-input type="number" label="Harga Beli" labelPlacement="stacked" placeholder="Masukkan Harga Beli"
         [(ngModel)]="edit_buyPrice" (keyup)="cekValid()" required></ion-input>
     </ion-item>

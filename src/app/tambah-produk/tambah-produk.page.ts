@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class TambahProdukPage implements OnInit {
 
   new_name: string = "";
+  new_category: string = "";
   new_buyPrice: number = 0;
   new_sellPrice: number = 0;
   new_stock: number = 0;
@@ -18,6 +19,7 @@ export class TambahProdukPage implements OnInit {
 
 
   err_name: string = '';
+  err_category: string = '';
   err_buyPrice: string = '';
   err_sellPrice: string = '';
   err_stock: string = '';
@@ -30,6 +32,7 @@ export class TambahProdukPage implements OnInit {
 
   cekValid() {
     this.err_name = '';
+    this.err_category = '';
     this.err_buyPrice = '';
     this.err_sellPrice = '';
     this.err_stock = '';
@@ -37,6 +40,10 @@ export class TambahProdukPage implements OnInit {
 
     if (this.new_name === "") {
       this.err_name = 'Nama produk harus diisi';
+      this.valid = 'invalid';
+    }
+    if (this.new_category === "") {
+      this.err_category = 'Kategori harus diisi';
       this.valid = 'invalid';
     }
     if (this.new_buyPrice <= 0) {
@@ -55,9 +62,9 @@ export class TambahProdukPage implements OnInit {
 
   submitProduk() {
     this.cekValid();
-    
+
     if (this.valid === "valid") {
-      this.productservice.addProduk(this.new_name, this.new_buyPrice, this.new_sellPrice, this.new_stock, this.new_imgurl);
+      this.productservice.addProduk(this.new_name, this.new_category, this.new_buyPrice, this.new_sellPrice, this.new_stock, this.new_imgurl);
       this.router.navigate(['/produk']);
     }
 
