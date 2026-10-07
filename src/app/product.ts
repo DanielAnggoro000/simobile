@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class Product {
-    private lastIndex: number=9;
     products = [
         {
             index: 0,
@@ -13,7 +12,7 @@ export class Product {
             buyPrice: 65000,
             sellPrice: 70000,
             stock: 25,
-            imgurl: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500"
+            imgurl: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/100/MTA-184823821/setra_ramos_beras_premium_befood_setra_ramos_5_kg_full01_nuf51wld.webp"
         },
         {
             index: 1,
@@ -22,79 +21,79 @@ export class Product {
             buyPrice: 34000,
             sellPrice: 38000,
             stock: 30,
-            imgurl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500"
+            imgurl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXn7ji0qd8Kb90oURdtpyKDpxXCF7GF2XEG1K_zk9rr3XB9SFNcRUxFQL8&s=10"
         },
         {
-             index: 2,
+            index: 2,
             name: "Gula Pasir Putih 1kg",
             category: "Sembako",
             buyPrice: 15500,
             sellPrice: 17500,
             stock: 40,
-            imgurl: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=500"
+            imgurl: "https://coreimages.lottemart.co.id/ord/06/0e962f7f-ce6e-4122-be5f-b83367916812.jpeg"
         },
         {
-             index: 3,
+            index: 3,
             name: "Indomie Goreng Original",
             category: "Makanan Instan",
             buyPrice: 2800,
             sellPrice: 3500,
             stock: 120,
-            imgurl: "https://images.unsplash.com/photo-1612927601601-6638404737ce?w=500"
+            imgurl: "https://www.indomie.co.id/Content/Product/Category/indomie-goreng.jpg"
         },
         {
-             index: 4,
+            index: 4,
             name: "Sunlight Sabun Pencuci Piring 755ml",
             category: "Kebersihan",
             buyPrice: 15000,
             sellPrice: 18000,
             stock: 25,
-            imgurl: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500"
+            imgurl: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//102/MTA-47285229/unilever_sunlight_755ml_full00.jpg"
         },
         {
-             index: 5,
+            index: 5,
             name: "Gas Elpiji 3kg",
             category: "Rumah Tangga",
             buyPrice: 18000,
             sellPrice: 21000,
             stock: 10,
-            imgurl: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500"
+            imgurl: "https://siplah.blibli.com/data/images/SMMB-0005-00113/71c73d90-31b2-43d0-a292-ef71f51c7dbf.jpeg"
         },
         {
-             index: 6,
+            index: 6,
             name: "Kecap Manis Bango 550ml",
             category: "Bumbu",
             buyPrice: 22000,
             sellPrice: 25500,
             stock: 18,
-            imgurl: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500"
+            imgurl: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5851719/bango_bango-ref-kecap---550-ml--_full01.jpg"
         },
         {
-             index: 7,
+            index: 7,
             name: "Tolak Angin Cair (1 Kotak isi 12)",
             category: "Kesehatan",
             buyPrice: 38000,
             sellPrice: 44000,
             stock: 12,
-            imgurl: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500"
+            imgurl: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//98/MTA-7753544/sidomuncul_sidomuncul_tolak_angin_-1_box-_full01_qnqrjbtn.jpg"
         },
         {
-             index: 8,
+            index: 8,
             name: "Molto Pewangi Pakaian 780ml",
             category: "Kebersihan",
             buyPrice: 14000,
             sellPrice: 17000,
             stock: 22,
-            imgurl: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500"
+            imgurl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnmgKr6yeLamsd0dNocBW-Fyy9JH34nS_ap9wYdPZX8dRitELbzrAnSJdm&s=10"
         },
         {
-             index: 9,
+            index: 9,
             name: "Roma Kelapa Biskuit 300g",
             category: "Snack",
             buyPrice: 8500,
             sellPrice: 10500,
             stock: 30,
-            imgurl: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500"
+            imgurl: "https://c.alfagift.id/product/1/1_A10160000601_20220317102027482_base.jpg"
         }
     ];
 
@@ -109,7 +108,6 @@ export class Product {
             stock: p_stock,
             imgurl: p_imgurl
         })
-        this.lastIndex+1;
     }
     updateStock(jumlah: number, index: number) {
         this.products[index].stock += jumlah;

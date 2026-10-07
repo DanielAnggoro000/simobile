@@ -42,7 +42,7 @@
         <ion-col *ngFor="let product of products2">
           <ion-list>
             <ion-item color="secondary">
-              <ion-img
+              <ion-img style="height:300px; width: auto;"
                 [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
             </ion-item>
             <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="secondary">
