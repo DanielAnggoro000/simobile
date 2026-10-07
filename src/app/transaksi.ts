@@ -13,16 +13,15 @@ export class TransactionService {
         private keranjangService: Keranjang
     ) { }
 
-    // POIN 7: Tombol "Konfirmasi Transaksi"
     konfirmasiTransaksi() {
         let isiKeranjang = this.keranjangService.isikeranjang;
         let totalBayar = this.keranjangService.getTotalPrice();
 
         // ngurangin stock
-        for (let i = 0; i < isiKeranjang.length; i++) {
-            let item = isiKeranjang[i];
-            this.productService.updateStock(-item.jumlah, item.indexProduk);
-        }
+        // for (let i = 0; i < isiKeranjang.length; i++) {
+        //     let item = isiKeranjang[i];
+        //     this.productService.updateStock(-item.jumlah, item.indexProduk);
+        // }
         let sakinanKeranjang = [];
         for (let i = 0; i < isiKeranjang.length; i++) {
             sakinanKeranjang.push({

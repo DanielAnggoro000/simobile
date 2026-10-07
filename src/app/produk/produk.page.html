@@ -4,7 +4,6 @@
       <ion-back-button defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title>Belanja</ion-title>
-    <ion-label>Keranjang: {{keranjangCount()}} items</ion-label>
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar placeholder="Cari produk..." [debounce]="0" [(ngModel)]="keyword"
@@ -24,7 +23,7 @@
       <ion-label>PRODUK</ion-label>
     </ion-segment-button>
     <ion-segment-button value="keranjang">
-      <ion-label>KERANJANG</ion-label>
+      <ion-label>KERANJANG ({{keranjangCount()}} items)</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -42,7 +41,7 @@
         <ion-col *ngFor="let product of products2">
           <ion-list>
             <ion-item color="secondary">
-              <ion-img style="height:300px; width: auto;"
+              <ion-img
                 [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
             </ion-item>
             <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="secondary">

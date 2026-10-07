@@ -25,4 +25,11 @@ export class DetailprodukPage implements OnInit {
   tambahKeranjang() {
     this.keranjangservice.tambahKeKeranjang(this.index, 1);
   }
+
+  jumlahDiKeranjang(): number {
+    let indexInCart: number = this.keranjangservice.findInCart(this.index);
+    if (indexInCart == -1)
+      return 0;
+    return this.keranjangservice.isikeranjang[indexInCart].jumlah;
+  }
 }

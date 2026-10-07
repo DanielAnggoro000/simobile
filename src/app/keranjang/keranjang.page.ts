@@ -33,7 +33,7 @@ export class KeranjangPage implements OnInit {
   }
 
   kosongkan() {
-    this.keranjangservice.clearCart();
+    this.keranjangservice.cancelCart();
   }
 
   konfirmasi() {

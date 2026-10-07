@@ -16,12 +16,14 @@ export class Keranjang {
             if (this.isikeranjang[i].indexProduk == indexProduk) {
                 this.isikeranjang[i].jumlah += jumlah;
                 ketemu = true;
+                this.productservice.products[indexProduk].stock--;
                 break;
             }
         }
         // cek hasil ketemu kalok misal ga nemu ya berarti blom pernah ada jadi dipush
         if (ketemu === false) {
             this.isikeranjang.push({ indexProduk: indexProduk, jumlah: jumlah });
+            this.productservice.products[indexProduk].stock--;
         }
     }
     // ngitung total transaksi
@@ -43,12 +45,22 @@ export class Keranjang {
         return this.isikeranjang.length;
     }
 
+    cancelCart() {
+        for (let i = 0; i < this.isikeranjang.length; i++) {
+            let item = this.isikeranjang[i];
+            this.productservice.products[item.indexProduk].stock += item.jumlah;
+        }
+        this.clearCart();
+    }
+
     findInCart(indexToFind: number): number {
         let index: number = 0;
         let foundAt: number = -1
         for (let item in this.isikeranjang) {
-            if (this.isikeranjang[item].indexProduk == indexToFind)
+            if (this.isikeranjang[item].indexProduk == indexToFind) {
                 foundAt = index;
+                break;
+            }
             index++;
         }
         return foundAt;

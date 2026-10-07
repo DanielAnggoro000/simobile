@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      <ion-back-button defaultHref="/produk"></ion-back-button>
     </ion-buttons>
     <ion-title>{{products[index].name}}</ion-title>
   </ion-toolbar>
@@ -32,6 +32,9 @@
     </ion-item>
     <ion-item>
       Stock: {{products[index].stock}}
+    </ion-item>
+    <ion-item>
+      Jumlah di keranjang: {{jumlahDiKeranjang()}}
     </ion-item>
 
     <ion-item>

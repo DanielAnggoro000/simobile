@@ -16,7 +16,7 @@ export class ProdukPage implements OnInit {
   hasil: any[] = [];
   baris: any[][] = [];
   keyword: string = '';
-  tab: string = 'produk'
+  tab: string = 'produk';
 
   constructor(private productservice: Product, private keranjangservice: Keranjang,
     private transaksiservice: TransactionService, private animationCtrl: AnimationController,
@@ -66,6 +66,7 @@ export class ProdukPage implements OnInit {
 
   tambahKeranjang(index: number) {
     this.keranjangservice.tambahKeKeranjang(index, 1);
+    //this.refresh();
   }
 
   animasiTombol(event: any) {
@@ -102,7 +103,7 @@ export class ProdukPage implements OnInit {
   }
 
   kosongkan() {
-    this.keranjangservice.clearCart();
+    this.keranjangservice.cancelCart();
   }
 
   konfirmasi() {
