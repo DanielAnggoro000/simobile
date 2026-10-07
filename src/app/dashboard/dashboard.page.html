@@ -11,6 +11,12 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-item>
+    <ion-button size="small" (click)="refresh()">
+      Refresh
+    </ion-button>
+  </ion-item>
+
   <ion-card color="primary" class="kartu-dashboard">
     <ion-card-header>
       <ion-card-subtitle>Jumlah Produk</ion-card-subtitle>
@@ -28,7 +34,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card color="warning"class="kartu-dashboard">
+  <ion-card color="warning" class="kartu-dashboard">
     <ion-card-header>
       <ion-card-subtitle>Produk Terlaris</ion-card-subtitle>
       <ion-card-title>{{ produkTerlaris }}</ion-card-title>

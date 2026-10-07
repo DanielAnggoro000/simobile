@@ -22,6 +22,10 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.hitungRingkasan();
   }
+
+  refresh() {
+    this.hitungRingkasan();
+  }
   
   // dipanggil tiap halaman dashboard dibuka lagi supaya angkanya selalu update
   ionViewWillEnter() {

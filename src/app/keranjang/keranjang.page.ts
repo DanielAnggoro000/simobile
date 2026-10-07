@@ -12,19 +12,20 @@ import { TransactionService } from '../transaksi';
 })
 export class KeranjangPage implements OnInit {
   products: any[] = [];
-  items: any[] = [];
+  isikeranjang: any[] = [];
   constructor(private keranjangservice: Keranjang, private productservice: Product, private transaksiservice: TransactionService, private router: Router) { }
 
   ngOnInit() {
     this.products = this.productservice.products;
   }
 
-  ionViewWillEnter() {
-    this.items = this.keranjangservice.isikeranjang;
+  refresh() {
+    this.products = this.productservice.products;
+    this.isikeranjang = this.keranjangservice.isikeranjang
   }
 
   getIsi() {
-    return this.keranjangservice.isikeranjang;
+    return this.isikeranjang;
   }
 
   getTotal() {
@@ -33,7 +34,6 @@ export class KeranjangPage implements OnInit {
 
   kosongkan() {
     this.keranjangservice.clearCart();
-    this.items = [];
   }
 
   konfirmasi() {
@@ -42,6 +42,6 @@ export class KeranjangPage implements OnInit {
   }
 
   getCount(): number {
-    return this.items.length;
+    return this.isikeranjang.length;
   }
 }

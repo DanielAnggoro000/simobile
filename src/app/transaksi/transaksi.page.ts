@@ -30,4 +30,8 @@ export class TransaksiPage implements OnInit {
       secondString = "0" + secondString;
     return d.getDate() + ' ' + arrayOfMonths[d.getMonth()] + ' ' + d.getFullYear() + " " + hourString + ":" + minuteString + ":" + secondString;
   }
+
+  refresh() {
+    this.history = this.transaksiservice.history;
+  }
 }

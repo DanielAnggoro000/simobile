@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
     <ion-title>Keranjang: {{getCount()}} items</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +15,11 @@
   </ion-header>
 
   <ion-list>
+    <ion-item>
+      <ion-button size="small" (click)="refresh()">
+        Refresh
+      </ion-button>
+    </ion-item>
     <ion-item *ngFor="let item of getIsi()">
       <ion-label>
         <h2>{{products[item.indexProduk].name}}</h2>

@@ -1,7 +1,7 @@
 <ion-app>
   <ion-menu auto-hide="true" contentId="main-content">
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-title>Menu List</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -30,14 +30,19 @@
             <ion-label>Transaksi</ion-label>
           </ion-item>
 
-          <!-- <ion-item routerLink="/keranjang">
+          <ion-item routerLink="/keranjang">
             <ion-icon name="cart" slot="start"></ion-icon>
             <ion-label>Keranjang</ion-label>
-          </ion-item> -->
+          </ion-item>
 
           <ion-item routerLink="/tambah-produk">
             <ion-icon name="add" slot="start"></ion-icon>
             <ion-label>Tambah Produk</ion-label>
+          </ion-item>
+
+          <ion-item routerLink="/profile">
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <ion-label>Profile</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>

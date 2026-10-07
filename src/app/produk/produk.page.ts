@@ -29,6 +29,11 @@ export class ProdukPage implements OnInit {
     this.cari();
   }
 
+  refresh() {
+    this.products = this.productservice.products;
+    this.cari();
+  }
+
   ionViewWillEnter() {
     this.cari();
   }
