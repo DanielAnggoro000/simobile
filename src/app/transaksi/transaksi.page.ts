@@ -18,7 +18,16 @@ export class TransaksiPage implements OnInit {
 
   formatTanggal(d: Date): string {
     const arrayOfMonths = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
-      "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
-    return d.getDate() + ' ' + arrayOfMonths[d.getMonth()] + ' ' + d.getFullYear();
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    let hourString = d.getHours().toString();
+    let minuteString = d.getMinutes().toString();
+    let secondString = d.getSeconds().toString();
+    if (hourString.length < 2)
+      hourString = "0" + hourString;
+    if (minuteString.length < 2)
+      minuteString = "0" + minuteString;
+    if (secondString.length < 2)
+      secondString = "0" + secondString;
+    return d.getDate() + ' ' + arrayOfMonths[d.getMonth()] + ' ' + d.getFullYear() + " " + hourString + ":" + minuteString + ":" + secondString;
   }
 }

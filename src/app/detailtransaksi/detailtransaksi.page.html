@@ -13,7 +13,7 @@
 
   <ion-list>
     <ion-item>ID: {{transaksi.id}}</ion-item>
-    <ion-item>Tanggal: {{formatTanggal(transaksi.tanggal)}}</ion-item>
+    <ion-item>Tanggal & Waktu: {{formatTanggal(transaksi.tanggal)}}</ion-item>
     <ion-item *ngFor="let item of transaksi.items">
       <ion-label>
         <h3>{{products[item.indexProduk].name}}</h3>
