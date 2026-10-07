@@ -42,4 +42,15 @@ export class Keranjang {
     getCount(): number {
         return this.isikeranjang.length;
     }
+
+    findInCart(indexToFind: number): number {
+        let index: number = 0;
+        let foundAt: number = -1
+        for (let item in this.isikeranjang) {
+            if (this.isikeranjang[item].indexProduk == indexToFind)
+                foundAt = index;
+            index++;
+        }
+        return foundAt;
+    }
 }

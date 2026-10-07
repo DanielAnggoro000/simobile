@@ -101,7 +101,7 @@ export class Product {
 
     addProduk(p_name: string, p_category: string, p_buyPrice: number, p_sellPrice: number, p_stock: number, p_imgurl: string) {
         this.products.push({
-            index: this.lastIndex+1,
+            index: this.products.length,
             name: p_name,
             category: p_category,
             buyPrice: p_buyPrice,

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { Keranjang } from '../keranjang';
 import { AnimationController } from '@ionic/angular';
+import { TransactionService } from '../transaksi';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-produk',
@@ -12,10 +14,13 @@ import { AnimationController } from '@ionic/angular';
 export class ProdukPage implements OnInit {
   products: any[] = [];
   hasil: any[] = [];
-  baris: any[][] = [];      
-  keyword: string = '';   
+  baris: any[][] = [];
+  keyword: string = '';
+  tab: string = 'produk'
 
-  constructor(private productservice: Product, private keranjangservice: Keranjang, private animationCtrl: AnimationController) {
+  constructor(private productservice: Product, private keranjangservice: Keranjang,
+    private transaksiservice: TransactionService, private animationCtrl: AnimationController,
+    private router: Router) {
 
   }
 
@@ -37,7 +42,7 @@ export class ProdukPage implements OnInit {
       if (nama.includes(kata) || kategori.includes(kata)) {
         this.hasil.push(this.products[i]);
       }
-      
+
     }
     this.baris = this.chunkArray(this.hasil, 2);
   }
@@ -69,5 +74,38 @@ export class ProdukPage implements OnInit {
         { offset: 1, transform: 'scale(1)' }
       ])
       .play();
+  }
+
+  keranjangCount(): number {
+    return this.keranjangservice.getCount();
+  }
+
+  jumlahDiKeranjang(produkIndex: number): number {
+    let indexInCart: number = this.keranjangservice.findInCart(produkIndex);
+    if (indexInCart == -1)
+      return 0;
+    return this.keranjangservice.isikeranjang[indexInCart].jumlah;
+  }
+
+  // METHOD KERANJANG
+  getIsi() {
+    return this.keranjangservice.isikeranjang;
+  }
+
+  getTotal() {
+    return this.keranjangservice.getTotalPrice();
+  }
+
+  kosongkan() {
+    this.keranjangservice.clearCart();
+  }
+
+  konfirmasi() {
+    this.transaksiservice.konfirmasiTransaksi();
+    this.router.navigate(['/transaksi']);
+  }
+
+  getCount(): number {
+    return this.keranjangservice.isikeranjang.length;
   }
 }

@@ -1,9 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>Produk</ion-title>
+    <ion-title>Belanja</ion-title>
+    <ion-label>Keranjang: {{keranjangCount()}} items</ion-label>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="Cari produk..." [debounce]="0" [(ngModel)]="keyword" (ngModelChange)="cari()"></ion-searchbar>
+    <ion-searchbar placeholder="Cari produk..." [debounce]="0" [(ngModel)]="keyword"
+      (ngModelChange)="cari()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -14,30 +16,73 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item *ngIf="hasil.length === 0">
-    <ion-label>Tidak ada produk yang cocok dengan "{{ keyword }}"</ion-label>
-  </ion-item>
+  <ion-segment [(ngModel)]="tab">
+    <ion-segment-button value="produk">
+      <ion-label>PRODUK</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="keranjang">
+      <ion-label>KERANJANG</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-  <ion-grid>
-    <ion-row *ngFor="let products2 of baris">
-      <ion-col *ngFor="let product of products2">
-        <ion-list>
-          <ion-item color="secondary">
-            <ion-img [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
-          </ion-item>
-          <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="secondary">
-            {{product.name}} {{getIndex(product)}}
-          </ion-item>
-          <ion-item color="secondary">
-            <!-- <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
+  <ion-content *ngIf="tab=='produk'">
+    <ion-item *ngIf="hasil.length === 0">
+      <ion-label>Tidak ada produk yang cocok dengan "{{ keyword }}"</ion-label>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row *ngFor="let products2 of baris">
+        <ion-col *ngFor="let product of products2">
+          <ion-list>
+            <ion-item color="secondary">
+              <ion-img
+                [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
+            </ion-item>
+            <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="secondary">
+              {{product.name}} {{getIndex(product)}}
+            </ion-item>
+            <ion-item color="secondary">
+              Rp {{product.sellPrice}}
+            </ion-item>
+            <ion-item color="secondary">
+              <!-- <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
               Tambah ke Keranjang
             </ion-button> -->
-            <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product));">
-              Tambah ke Keranjang
-            </ion-button>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+              <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product));">
+                Tambah ke Keranjang
+              </ion-button>
+            </ion-item>
+            <ion-item color="secondary">
+              Jumlah di keranjang: {{jumlahDiKeranjang(getIndex(product))}}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+  <ion-content *ngIf="tab=='keranjang'">
+    <ion-list>
+      <ion-item *ngFor="let item of getIsi()">
+        <ion-label>
+          <h2>{{products[item.indexProduk].name}}</h2>
+          <p>Rp {{products[item.indexProduk].sellPrice}} x {{item.jumlah}}
+            = Rp {{products[item.indexProduk].sellPrice * item.jumlah}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label>Total: Rp {{getTotal()}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-button [disabled]="getIsi().length == 0" (click)="konfirmasi()">
+        Konfirmasi Transaksi
+      </ion-button>
+      <ion-button color="danger" [disabled]="getIsi().length == 0" (click)="kosongkan()">
+        Kosongkan
+      </ion-button>
+    </ion-item>
+  </ion-content>
 </ion-content>
