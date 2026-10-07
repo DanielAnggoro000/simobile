@@ -37,12 +37,13 @@ export class ProdukPage implements OnInit {
       if (nama.includes(kata) || kategori.includes(kata)) {
         this.hasil.push(this.products[i]);
       }
-      this.baris = this.chunkArray(this.hasil, 2);
+      
     }
+    this.baris = this.chunkArray(this.hasil, 2);
   }
 
   getIndex(product: any) {
-    return this.products.indexOf(product);
+    return product.index;
   }
 
   chunkArray(arr: any[], chunkSize: number): any[][] {

@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>produk</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Produk</ion-title>
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar placeholder="Cari produk..." [debounce]="0" [(ngModel)]="keyword" (ngModelChange)="cari()"></ion-searchbar>
@@ -22,14 +22,17 @@
     <ion-row *ngFor="let products2 of baris">
       <ion-col *ngFor="let product of products2">
         <ion-list>
-          <ion-item>
+          <ion-item color="secondary">
             <ion-img [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
           </ion-item>
-          <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="success">
-            {{product.name}}
+          <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="secondary">
+            {{product.name}} {{getIndex(product)}}
           </ion-item>
-          <ion-item>
-            <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
+          <ion-item color="secondary">
+            <!-- <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
+              Tambah ke Keranjang
+            </ion-button> -->
+            <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product));">
               Tambah ke Keranjang
             </ion-button>
           </ion-item>

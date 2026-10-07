@@ -35,4 +35,8 @@ export class KeranjangPage implements OnInit {
     this.transaksiservice.konfirmasiTransaksi();
     this.router.navigate(['/transaksi']);
   }
+
+  getCount(): number {
+    return this.keranjangservice.getCount();
+  }
 }

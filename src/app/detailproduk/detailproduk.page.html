@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>{{products[index].name}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -32,7 +32,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-button [disabled]="products[index].stock == 0" (click)="tambahKeranjang()">
+      <ion-button [disabled]="products[index].stock == 0" (click)="tambahKeranjang()" color="">
         Tambah ke Keranjang
       </ion-button>
       <ion-button routerLink="/editproduk/{{ index }}">

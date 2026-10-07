@@ -38,4 +38,8 @@ export class Keranjang {
     clearCart() {
         this.isikeranjang = [];
     }
+
+    getCount(): number {
+        return this.isikeranjang.length;
+    }
 }
