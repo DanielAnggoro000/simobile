@@ -102,17 +102,52 @@ export class Product {
         }
     ]; 
 
-    addProduk(p_name: string, p_category: string, p_buyPrice: number, p_sellPrice: number, p_stock: number, p_imgurl: string) {
-        this.products.push({
-            index: this.products.length,
-            name: p_name,
-            category: p_category,
-            buyPrice: p_buyPrice,
-            sellPrice: p_sellPrice,
-            stock: p_stock,
-            imgurl: p_imgurl
-        })
+    tambahProduk(p_name: string, p_category: string, p_buyPrice: number, p_sellPrice: number, p_stock: number, p_imgurl: string) {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const body= new URLSearchParams();
+        body.set('name', p_name);
+        body.set('category', p_category);
+        body.set('buyPrice', p_buyPrice.toString());
+        body.set('sellPrice', p_sellPrice.toString());
+        body.set('stock', p_stock.toString());
+        body.set('imgUrl', p_imgurl);
+        const urlEncodedData = body.toString();
+        return this.http.post('https://ubaya.fun/hybrid/160424020/uas/tambah_product.php',
+            urlEncodedData,{ headers });
     }
+    updateProduct(p_id: number,p_name: string,p_category: string,p_buyPrice: number,p_sellPrice: number,p_stock: number,p_imgurl: string) {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const body= new URLSearchParams();
+        body.set('id', p_id.toString());
+        body.set('name', p_name);
+        body.set('category', p_category);
+        body.set('buyPrice', p_buyPrice.toString());
+        body.set('sellPrice', p_sellPrice.toString());
+        body.set('stock', p_stock.toString());
+        body.set('imgUrl', p_imgurl);
+        const urlEncodedData = body.toString();
+        return this.http.post('https://ubaya.fun/hybrid/160424020/uas/update_product.php',
+            urlEncodedData,{ headers });
+    }
+    deleteProduct(p_id: number) {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const body = new URLSearchParams();
+        body.set('id', p_id.toString());
+        const urlEncodedData = body.toString();
+        return this.http.post('https://ubaya.fun/hybrid/160424020/uas/delete_product.php',
+            urlEncodedData,{ headers });
+    }
+    uploadImage(p_name: string, p_base64: string) {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const body = new URLSearchParams();
+        body.set('name', p_name.toString());
+        body.set('base64', p_base64.toString());
+        const urlEncodedData = body.toString();
+        return this.http.post('https://ubaya.fun/hybrid/160424020/uas/upload_image.php',
+            urlEncodedData,{ headers });
+    }
+
+
     updateStock(jumlah: number, index: number) {
         this.products[index].stock += jumlah;
     }

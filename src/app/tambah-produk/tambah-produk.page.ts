@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-tambah-produk',
@@ -16,6 +17,9 @@ export class TambahProdukPage implements OnInit {
   new_sellPrice: number = 0;
   new_stock: number = 0;
   new_imgurl: string = "";
+  alertButtons: string[] = ["OK"]
+  base64: any
+  imageType: string = 'URL'
 
 
   err_name: string = '';
@@ -30,6 +34,15 @@ export class TambahProdukPage implements OnInit {
   ngOnInit() {
   }
 
+  async captureImage() {
+    const image = await Camera.getPhoto({
+      quality: 50,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+    });
+    const base64Image = 'data:image/png;base64,' + image.base64String;
+    this.base64 = base64Image;
+  }
   cekValid() {
     this.err_name = '';
     this.err_category = '';
@@ -63,11 +76,22 @@ export class TambahProdukPage implements OnInit {
   submitProduk() {
     this.cekValid();
 
-    if (this.valid === "valid") {
-      this.productservice.addProduk(this.new_name, this.new_category, this.new_buyPrice, this.new_sellPrice, this.new_stock, this.new_imgurl);
-      this.router.navigate(['/produk']);
+    if (this.imageType == 'Camera') {
+      this.new_imgurl ='https://ubaya.fun/hybrid/160424020/uas/images/' + this.new_name + '.png';
+      this.productservice.uploadImage(this.new_name, this.base64).subscribe((response: any) => {
+          if (response.result === 'success') {
+            alert('photo uploaded');
+          }
+        }
+      )
     }
-
+    this.productservice.tambahProduk(this.new_name,this.new_category,this.new_buyPrice,
+      this.new_sellPrice,this.new_stock,this.new_imgurl).subscribe((response: any) => {
+        if (response.result === 'success') {
+          alert('success');
+        } else {
+          alert(response.message);
+        }
+      });
   }
-
 }
