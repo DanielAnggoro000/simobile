@@ -42,13 +42,13 @@
           <ion-list>
             <ion-item color="secondary">
               <ion-img
-                [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
+                [src]="product.imgUrl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
             </ion-item>
             <ion-item routerLink="/detailproduk/{{ product.id }}" color="secondary">
               {{product.name}}
             </ion-item>
             <ion-item color="secondary">
-              Rp {{product.sell_price}}
+              Rp {{product.sellPrice}}
             </ion-item>
             <ion-item color="secondary">
               <!-- <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">

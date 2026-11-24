@@ -16,19 +16,19 @@
 
   <ion-list>
     <ion-item>
-      <ion-img [src]="product.img_url "></ion-img>
+      <ion-img [src]="product.imgUrl "></ion-img>
     </ion-item>
     <ion-item>
       Kategori: {{product.category}}
     </ion-item>
     <ion-item>
-      Harga Jual: {{product.sell_price}} 
+      Harga Jual: {{product.sellPrice}} 
     </ion-item>
     <ion-item>
-      Harga Beli: {{product.buy_price}}
+      Harga Beli: {{product.buyPrice}}
     </ion-item>
     <ion-item>
-      Untung per item: {{product.sell_price - products.buy_price}}
+      Untung per item: {{product.sellPrice - product.buyPrice}}
     </ion-item>
     <ion-item>
       Stock: {{product.stock}}
@@ -36,8 +36,7 @@
     <ion-item>
       Jumlah di keranjang: {{jumlahDiKeranjang()}}
     </ion-item>
-
-    <ion-item>
+    <ion-item style="margin-bottom: 50px;">
       <ion-button [disabled]="product.stock == 0" (click)="tambahKeranjang()" color="">
         Tambah ke Keranjang
       </ion-button>
