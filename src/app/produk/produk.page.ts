@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { Keranjang } from '../keranjang';
 import { AnimationController } from '@ionic/angular';
@@ -20,13 +20,21 @@ export class ProdukPage implements OnInit {
 
   constructor(private productservice: Product, private keranjangservice: Keranjang,
     private transaksiservice: TransactionService, private animationCtrl: AnimationController,
-    private router: Router) {
+    private router: Router, private cdr: ChangeDetectorRef) {
 
   }
 
   ngOnInit() {
-    this.products = this.productservice.products;
-    this.cari();
+    // this.products = this.productservice.products;
+    // this.cari();
+    this.productservice.productList().subscribe(
+      (data) => {
+        this.products = data;
+        this.hasil = data;
+        this.cari();
+        this.cdr.markForCheck();
+      }
+    )
   }
 
   refresh() {

@@ -21,8 +21,14 @@
     <ion-item>
       Kategori: {{products[index].category}}
     </ion-item>
+    <ion-item *ngIf="products[index].diskon">
+      Diskon: {{products[index].diskon}}
+    </ion-item>
+    <ion-item *ngIf="products[index].diskon">
+      Harga Jual: {{products[index].sellPrice}} - diskon({{products[index].diskon}}) = {{products[index].sellPrice - products[index].diskon}}
+    </ion-item>
     <ion-item>
-      Harga Jual: {{products[index].sellPrice}}
+      Harga Jual: {{products[index].sellPrice}} 
     </ion-item>
     <ion-item>
       Harga Beli: {{products[index].buyPrice}}

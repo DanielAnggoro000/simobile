@@ -36,6 +36,7 @@
         Refresh
       </ion-button>
     </ion-item>
+
     <ion-grid>
       <ion-row *ngFor="let products2 of baris">
         <ion-col *ngFor="let product of products2">
@@ -44,22 +45,19 @@
               <ion-img
                 [src]="product.imgurl || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'"></ion-img>
             </ion-item>
-            <ion-item routerLink="/detailproduk/{{ getIndex(product) }}" color="secondary">
+            <ion-item routerLink="/detailproduk/{{ product.id }}" color="secondary">
               {{product.name}}
             </ion-item>
             <ion-item color="secondary">
-              Rp {{product.sellPrice}}
+              Rp {{product.sell_price}}
             </ion-item>
             <ion-item color="secondary">
-              <!-- <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
-              Tambah ke Keranjang
-            </ion-button> -->
               <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
                 Tambah ke Keranjang
               </ion-button>
             </ion-item>
             <ion-item color="secondary">
-              Jumlah di keranjang: {{jumlahDiKeranjang(getIndex(product))}}
+              Jumlah di keranjang: {{jumlahDiKeranjang(product.id)}}
             </ion-item>
           </ion-list>
         </ion-col>

@@ -77,10 +77,11 @@ export class TransactionService {
             terjual.push(0);
         }
 
-        for (let i = 0; i < this.history.length; i++) {
-            let items = this.history[i].items;
-            for (let j = 0; j < items.length; j++) {
-                terjual[items[j].indexProduk] += items[j].jumlah;
+        for (let indexHistory = 0; indexHistory < this.history.length; indexHistory++) {
+            let items = this.history[indexHistory].items;
+            for (let indexProdukDiTransaksi = 0; indexProdukDiTransaksi < items.length; indexProdukDiTransaksi++) {
+                // terjual[indexProduk] += 
+                terjual[items[indexProdukDiTransaksi].indexProduk] += items[indexProdukDiTransaksi].jumlah;
             }
         }
         let indexTerlaris = -1;

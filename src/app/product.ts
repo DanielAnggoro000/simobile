@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class Product {
+    private readonly http = Inject(HttpClient);
+
     products = [
         {
             index: 0,
@@ -12,6 +16,7 @@ export class Product {
             buyPrice: 65000,
             sellPrice: 70000,
             stock: 25,
+            diskon: 5000,
             imgurl: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/100/MTA-184823821/setra_ramos_beras_premium_befood_setra_ramos_5_kg_full01_nuf51wld.webp"
         },
         {
@@ -39,6 +44,7 @@ export class Product {
             buyPrice: 2800,
             sellPrice: 3500,
             stock: 120,
+            diskon: 500,
             imgurl: "https://www.indomie.co.id/Content/Product/Category/indomie-goreng.jpg"
         },
         {
@@ -95,8 +101,7 @@ export class Product {
             stock: 30,
             imgurl: "https://c.alfagift.id/product/1/1_A10160000601_20220317102027482_base.jpg"
         }
-    ];
-
+    ]; 
 
     addProduk(p_name: string, p_category: string, p_buyPrice: number, p_sellPrice: number, p_stock: number, p_imgurl: string) {
         this.products.push({
@@ -115,4 +120,10 @@ export class Product {
     getJumlahProduk() {
         return this.products.length;
     }
+
+    productList(): Observable<any> {
+        return this.http.get("https://ubaya.fun/hybrid/160424020/uas/products.php");
+    }
+
+    
 }
