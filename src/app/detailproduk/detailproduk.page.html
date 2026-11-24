@@ -3,48 +3,42 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/produk"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{products[index].name}}</ion-title>
+    <ion-title>{{product.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">{{products[index].name}}</ion-title>
+      <ion-title size="large">{{product.name}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-list>
     <ion-item>
-      <ion-img [src]="products[index].imgurl "></ion-img>
+      <ion-img [src]="product.img_url "></ion-img>
     </ion-item>
     <ion-item>
-      Kategori: {{products[index].category}}
-    </ion-item>
-    <ion-item *ngIf="products[index].diskon">
-      Diskon: {{products[index].diskon}}
-    </ion-item>
-    <ion-item *ngIf="products[index].diskon">
-      Harga Jual: {{products[index].sellPrice}} - diskon({{products[index].diskon}}) = {{products[index].sellPrice - products[index].diskon}}
+      Kategori: {{product.category}}
     </ion-item>
     <ion-item>
-      Harga Jual: {{products[index].sellPrice}} 
+      Harga Jual: {{product.sell_price}} 
     </ion-item>
     <ion-item>
-      Harga Beli: {{products[index].buyPrice}}
+      Harga Beli: {{product.buy_price}}
     </ion-item>
     <ion-item>
-      Untung per item: {{products[index].sellPrice - products[index].buyPrice}}
+      Untung per item: {{product.sell_price - products.buy_price}}
     </ion-item>
     <ion-item>
-      Stock: {{products[index].stock}}
+      Stock: {{product.stock}}
     </ion-item>
     <ion-item>
       Jumlah di keranjang: {{jumlahDiKeranjang()}}
     </ion-item>
 
     <ion-item>
-      <ion-button [disabled]="products[index].stock == 0" (click)="tambahKeranjang()" color="">
+      <ion-button [disabled]="product.stock == 0" (click)="tambahKeranjang()" color="">
         Tambah ke Keranjang
       </ion-button>
       <ion-button routerLink="/editproduk/{{ index }}">

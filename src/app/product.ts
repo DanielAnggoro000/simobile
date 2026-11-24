@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -6,9 +6,8 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class Product {
-    private readonly http = Inject(HttpClient);
-
-    products = [
+    private readonly http = inject(HttpClient);
+        products = [
         {
             index: 0,
             name: "Beras Premium Ramos 5kg",
@@ -123,6 +122,10 @@ export class Product {
 
     productList(): Observable<any> {
         return this.http.get("https://ubaya.fun/hybrid/160424020/uas/products.php");
+    }
+
+    productDetail(id: number): Observable<any> {
+        return this.http.get("https://ubaya.fun/hybrid/160424020/uas/product_detail.php?id=" + id)
     }
 
     

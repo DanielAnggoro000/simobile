@@ -36,7 +36,6 @@
         Refresh
       </ion-button>
     </ion-item>
-
     <ion-grid>
       <ion-row *ngFor="let products2 of baris">
         <ion-col *ngFor="let product of products2">
@@ -52,12 +51,15 @@
               Rp {{product.sell_price}}
             </ion-item>
             <ion-item color="secondary">
+              <!-- <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
+              Tambah ke Keranjang
+            </ion-button> -->
               <ion-button size="small" [disabled]="product.stock == 0" (click)="tambahKeranjang(getIndex(product)); animasiTombol($event)">
                 Tambah ke Keranjang
               </ion-button>
             </ion-item>
             <ion-item color="secondary">
-              Jumlah di keranjang: {{jumlahDiKeranjang(product.id)}}
+              Jumlah di keranjang: {{jumlahDiKeranjang(getIndex(product))}}
             </ion-item>
           </ion-list>
         </ion-col>

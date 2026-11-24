@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../product';
 import { Keranjang } from '../keranjang';
@@ -11,14 +11,24 @@ import { Keranjang } from '../keranjang';
 })
 export class DetailprodukPage implements OnInit {
   index = 0
-  products: any[] = []
+  product: any
 
-  constructor(private route: ActivatedRoute, private productservice: Product,private keranjangservice: Keranjang) { }
+  constructor(private route: ActivatedRoute, private productservice: Product,
+    private keranjangservice: Keranjang, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.products = this.productservice.products
+    this.loadProduct();
+  }
+
+  loadProduct() {
     this.route.params.subscribe(params => {
-      this.index = params['index'];
+      // this.index = params['index'];
+      this.productservice.productDetail(params['index']).subscribe(
+        (data) => {
+          this.product = data
+          this.cdr.markForCheck();
+        }
+      )
     });
   }
 
