@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() { }
+  constructor() {
+    defineCustomElements(window);
+   }
 
   toggleDarkMode(event: CustomEvent) {
     const isDark = event.detail.checked;
