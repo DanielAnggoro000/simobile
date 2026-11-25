@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../product';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-editproduk',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EditprodukPage implements OnInit {
 
-  constructor(private route: ActivatedRoute, private productservice: Product, private router: Router) { }
+  constructor(private route: ActivatedRoute, private productservice: Product, private router: Router, private cdr: ChangeDetectorRef) { }
   index = 0;
   products: any[] = [];
 
@@ -22,6 +23,9 @@ export class EditprodukPage implements OnInit {
   edit_stock: number = 0;
   edit_imgurl: string = "";
 
+  base64: any;
+  imageType: string = 'URL';
+
   err_name: string = '';
   err_category: string = '';
   err_buyPrice: string = '';
@@ -29,17 +33,31 @@ export class EditprodukPage implements OnInit {
   err_stock: string = '';
   valid: string = 'valid';
 
-  ngOnInit() {
-    this.products = this.productservice.products;
-    this.route.params.subscribe(params => {
-      this.index = params['index'];
-      this.edit_name = this.products[this.index].name;
-      this.edit_category = this.products[this.index].category;
-      this.edit_buyPrice = this.products[this.index].buyPrice;
-      this.edit_sellPrice = this.products[this.index].sellPrice;
-      this.edit_stock = this.products[this.index].stock;
-      this.edit_imgurl = this.products[this.index].imgurl;
+ngOnInit() {
+    this.route.params.subscribe((params) => {
+      // Pakai params['index'] karena route kamu di detailproduk memakai /editproduk/{{ index }}
+      this.index = params['index'] ?? params['id'];
+      this.productservice.productDetail(this.index).subscribe((data) => {
+        this.edit_name = data.name;
+        this.edit_category = data.category;
+        this.edit_buyPrice = data.buyPrice;
+        this.edit_sellPrice = data.sellPrice;
+        this.edit_stock = data.stock;
+        this.edit_imgurl = data.imgUrl;
+        this.cdr.detectChanges();
+      });
     });
+  }
+
+  async captureImage() {
+    const image = await Camera.getPhoto({
+      quality: 50,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+    });
+    const base64Image = 'data:image/png;base64,' + image.base64String;
+    this.base64 = base64Image;
+    this.cdr.detectChanges();
   }
 
   cekValid() {
@@ -75,14 +93,25 @@ export class EditprodukPage implements OnInit {
   editProduk() {
     this.cekValid();
     if (this.valid === "valid") {
-      this.products[this.index].name = this.edit_name;
-      this.products[this.index].category = this.edit_category;
-      this.products[this.index].buyPrice = this.edit_buyPrice;
-      this.products[this.index].sellPrice = this.edit_sellPrice;
-      this.products[this.index].stock = this.edit_stock;
-      this.products[this.index].imgurl = this.edit_imgurl;
-
-      this.router.navigate(['/produk']);
+      if (this.imageType == 'Camera' && this.base64) {
+        this.edit_imgurl ='https://ubaya.fun/hybrid/160424020/uas/images/' + this.edit_name + '.png';
+        this.productservice.uploadImage(this.edit_name, this.base64)
+          .subscribe((response: any) => {
+            if (response.result === 'success') {
+              alert('photo uploaded');
+            }
+          });
+      }
+     this.productservice.updateProduct(this.index, this.edit_name, this.edit_category, this.edit_buyPrice,
+        this.edit_sellPrice, this.edit_stock, this.edit_imgurl).subscribe((response: any) => {
+          if (response.result === 'success') {
+            alert('success');
+            this.router.navigate(['/produk']);
+          } 
+          else {
+            alert(response.message);
+          }
+      });
     }
   }
 }

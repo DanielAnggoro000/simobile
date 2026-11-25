@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../product';
 import { Keranjang } from '../keranjang';
 
@@ -14,7 +14,7 @@ export class DetailprodukPage implements OnInit {
   product: any
 
   constructor(private route: ActivatedRoute, private productservice: Product,
-    private keranjangservice: Keranjang, private cdr: ChangeDetectorRef) { }
+    private keranjangservice: Keranjang, private cdr: ChangeDetectorRef,private router:Router) { }
 
   ngOnInit() {
     this.loadProduct();
@@ -41,5 +41,16 @@ export class DetailprodukPage implements OnInit {
     if (indexInCart == -1)
       return 0;
     return this.keranjangservice.isikeranjang[indexInCart].jumlah;
+  }
+  deleteProduct(id: any) {
+    this.productservice.deleteProduct(id).subscribe((response: any) => {
+      if (response.result === 'success') {
+        alert("success")
+        this.router.navigate(['/produk'])
+      }
+      else {
+        alert(response.message)
+      }
+    });
   }
 }

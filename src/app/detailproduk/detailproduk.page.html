@@ -4,6 +4,17 @@
       <ion-back-button defaultHref="/produk"></ion-back-button>
     </ion-buttons>
     <ion-title>{{product.name}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="solid" color="secondary" [routerLink]="['/editproduk', product.id]">
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="solid" color="danger" (click)="deleteProduct(product.id)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +33,7 @@
       Kategori: {{product.category}}
     </ion-item>
     <ion-item>
-      Harga Jual: {{product.sellPrice}} 
+      Harga Jual: {{product.sellPrice}}
     </ion-item>
     <ion-item>
       Harga Beli: {{product.buyPrice}}
@@ -39,9 +50,6 @@
     <ion-item style="margin-bottom: 50px;">
       <ion-button [disabled]="product.stock == 0" (click)="tambahKeranjang()" color="">
         Tambah ke Keranjang
-      </ion-button>
-      <ion-button routerLink="/editproduk/{{ index }}">
-        Edit Produk
       </ion-button>
     </ion-item>
   </ion-list>
